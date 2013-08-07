@@ -5,7 +5,7 @@
 		<posX>21</posX>
 		<posY>31</posY>
 		<connect>
-			<lineTo>3,2</lineTo>
+			<lineTo>2,3</lineTo>
 		</connect>
 	</dot0>	
 	<dot1>
@@ -19,14 +19,14 @@
 		<posX>204</posX>
 		<posY>304</posY>
 		<connect>
-			<lineTo>3</lineTo>
+			<lineTo>0,3</lineTo>
 		</connect>
 	</dot2>	
 	<dot3>
 		<posX>303</posX>
 		<posY>43</posY>
 		<connect>
-			<lineTo>2</lineTo>
+			<lineTo>0,1,2</lineTo>
 		</connect>
 	</dot3>	
 </Path>

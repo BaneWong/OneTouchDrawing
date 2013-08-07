@@ -33,11 +33,11 @@ bool GameScene::init()
 void GameScene::update(float dt)
 {
 	// 自动将落在范围内的点设置为正中央
- 	if(isInCircle)
- 	{
- 		drawLine->setFixPoint(arrayPointDraw[beginIndex]);
- 		//drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
- 	}
+//  	if(isInCircle)
+//  	{
+//  		drawLine->setFixPoint(arrayPointDraw[beginIndex]);
+//  		//drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
+//  	}
 }
 
 void GameScene::menuCloseCallback(CCObject* pSender)
@@ -137,13 +137,25 @@ void GameScene::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
 		location2 = touch->getLocation();
 		drawLine->setMovedPoint(location2);
 		// 如果滑动过程中进入某个圈的范围内 则将圈中心设置为下次的起始点
-		if(containsInTouch(location2) && (oldBeginIndex != beginIndex))
+		if(containsInTouch(location2))
 		{
-			drawLine->setFixPoint(arrayPointDraw[beginIndex]);
-			drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
-			drawLine->setBeginIndex(beginIndex);
-			drawLine->setOldBeginIndex(oldBeginIndex);
-			handle->saveDrawedLine(parseXml, oldBeginIndex, beginIndex);
+			if(oldBeginIndex != beginIndex)
+			{
+				// 如果这条线没有画过并且在正确路径上，则设置新的起点，并保存该线
+				if(isOriginalPath(oldBeginIndex, beginIndex) && !isDrawed(oldBeginIndex, beginIndex))
+				{
+					drawLine->setFixPoint(arrayPointDraw[beginIndex]);
+					drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
+					drawLine->setBeginIndex(beginIndex);
+					drawLine->setOldBeginIndex(oldBeginIndex);
+					handle->saveDrawedLine(parseXml, oldBeginIndex, beginIndex);
+				}
+				// 如果这条线已经画过，则保持不变
+				else
+				{
+					// do nothing
+				}
+			}			
 		}
 	}
 
@@ -166,4 +178,45 @@ bool GameScene::containsInTouch(CCPoint touchPoint)
 		}
 		return false;
 
+}
+// 判断这条线段是否已经画过
+
+bool GameScene::isDrawed(int start, int end)
+{
+	if((start != end) && start >= 0 && end >= 0)
+	{
+		// 遍历图，查找这条线段是否已经画过
+		EdgeNode* find = handle->agl.adList[start].firstAdNode;
+		while (find != NULL)
+		{
+			if(find->index != end)
+				find = find->next;
+			else
+			{
+				if(find->IsDrawed == true)
+					return true;
+				else
+					return false;
+			}
+		}
+	}
+	return false;
+}
+// 判断这条线段是否在正确路径范围内
+bool GameScene::isOriginalPath(int start, int end)
+{
+	// 因为是无向的 所以只需判断一边
+	if((start != end) && start >= 0 && end >= 0)
+	{
+		EdgeNode* find = handle->agl.adList[start].firstAdNode;
+		while (find != NULL)
+		{
+			if(find->index == end)
+				return true;
+			find = find->next;
+		}
+	}
+	// 如果不在正确路径上，则将终点指回起点
+	beginIndex = oldBeginIndex;
+	return false;
 }

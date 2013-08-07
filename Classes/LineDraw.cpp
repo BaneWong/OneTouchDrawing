@@ -1,5 +1,3 @@
-// tt
-//
 #include "LineDraw.h"
 
 bool LineDraw::init()
@@ -20,12 +18,10 @@ void LineDraw::draw()
 	// 如果移动的点不在任意一个圈范围内,则画
 
 	// 画动的线：
+	ccDrawLine(_fixPoint, _movedPoint);
 
-	if(!containInCircle(_movedPoint))		
-
-
-	if(isOriginalPath(oldBeginIndex, beginIndex) && !(isDrawed(oldBeginIndex, beginIndex)))
-		ccDrawLine(_fixPoint, _movedPoint);
+	//if(isOriginalPath(oldBeginIndex, beginIndex) && !(isDrawed(oldBeginIndex, beginIndex)))
+		
 
 }
 

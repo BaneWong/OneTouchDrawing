@@ -37,6 +37,8 @@ public:
 	void update(float dt);
 
 	bool containsInTouch(CCPoint);
+	bool isDrawed(int start, int end);
+	bool isOriginalPath(int start, int end);
 
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
