@@ -79,9 +79,18 @@ void GraphHandle::saveDrawedLine(HXmlParse* parase, int begin, int end)
 		{
 		find->IsDrawed = true;
 		// 无向图 因此相应修改对应线段权值
-		agl.adList[end].firstAdNode->IsDrawed = true;
-		break;
-		
+		EdgeNode* findEnd = agl.adList[end].firstAdNode;
+		while(findEnd != NULL)
+		{
+			if(findEnd->index != begin)
+				findEnd = findEnd->next;
+			else
+			{
+				findEnd->IsDrawed = true;
+				break;
+			}
+		}
+		break;		
 		}
 	}		
 }

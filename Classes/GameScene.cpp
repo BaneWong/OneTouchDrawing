@@ -193,8 +193,9 @@ bool GameScene::isDrawed(int start, int end)
 				find = find->next;
 			else
 			{
-				if(find->IsDrawed == true)
-					return true;
+				if(find->IsDrawed == true){
+					beginIndex = oldBeginIndex;
+					return true;}
 				else
 					return false;
 			}
