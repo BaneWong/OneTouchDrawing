@@ -22,8 +22,8 @@ public:
 
 	virtual bool init();
 	CREATE_FUNC(LineDraw);
-	bool isOriginalPath(int, int);
-	bool isDrawed(int, int);
+// 	bool isOriginalPath(int, int);
+// 	bool isDrawed(int, int);
 // private:
 // 	GraphHandle* handle; 
 };
