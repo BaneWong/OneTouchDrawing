@@ -108,20 +108,23 @@ void GameScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 				if(oldBeginIndex != beginIndex)
 				{
 					// 设置新的起点
-					drawLine->setFixPoint(arrayPointDraw[beginIndex]);
-					drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
-
-					// 保存已经画好的线的起点
-					arrayPointBegin.push_back(arrayPointDraw[oldBeginIndex]);
-					drawLine->setBeginPoint(arrayPointBegin);
-
-					// 保存已经画好的线的终点
-					arrayPointEnd.push_back(arrayPointDraw[beginIndex]);
-					drawLine->setEndPoint(arrayPointEnd);
-
-					//drawLine->setGraphHandle(handle);
-					
-					handle->saveDrawedLine(parseXml, oldBeginIndex, beginIndex);
+// 					drawLine->setFixPoint(arrayPointDraw[beginIndex]);
+// 					drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
+// 					
+// 					handle->saveDrawedLine(parseXml, oldBeginIndex, beginIndex);
+					if(isOriginalPath(oldBeginIndex, beginIndex) && !isDrawed(oldBeginIndex, beginIndex))
+					{
+						drawLine->setFixPoint(arrayPointDraw[beginIndex]);
+						drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
+						drawLine->setBeginIndex(beginIndex);
+						drawLine->setOldBeginIndex(oldBeginIndex);
+						handle->saveDrawedLine(parseXml, oldBeginIndex, beginIndex);
+					}
+					// 如果这条线已经画过，则保持不变
+					else
+					{
+						// do nothing
+					}
 				}
 
 			}

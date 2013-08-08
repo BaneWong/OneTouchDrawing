@@ -90,7 +90,7 @@ void GraphHandle::saveDrawedLine(HXmlParse* parase, int begin, int end)
 				break;
 			}
 		}
-		break;		
+		break;
 		}
 	}		
 }
