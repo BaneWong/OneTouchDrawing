@@ -5,15 +5,17 @@
 
 #include "SimpleAudioEngine.h"
 
+#include "GraphHandle.h"
+
 #include "HXmlParse.h"
 
 #include "LineDraw.h"
 
 #include "LinePath.h"
 
-#include "GraphHandle.h"
+USING_NS_CC;
 
-//USING_NS_CC;
+
 
 class GameScene : public CCLayer
 {

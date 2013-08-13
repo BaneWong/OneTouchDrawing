@@ -1,4 +1,4 @@
-// To be Add:判断重复的线 不要画
+// TODO:判断重复的线 不要画
 
 #include "GameScene.h"
 

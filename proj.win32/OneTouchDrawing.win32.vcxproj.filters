@@ -58,6 +58,9 @@
     <ClInclude Include="..\Classes\GraphHandle.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\MainScene.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -79,6 +82,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GraphHandle.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
