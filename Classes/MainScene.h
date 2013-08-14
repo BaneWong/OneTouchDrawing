@@ -8,7 +8,10 @@ class MainScene: public CCLayer{
 public:
 	virtual bool init();
 	static CCScene* scene();
-	void startCallback(CCObject* pSender);
 	CREATE_FUNC(MainScene);
+
+	void startCallback(CCObject* pSender);
+	char* FontToUTF8(const char* font);
+	
 };
 #endif MAINSCENE_H_
