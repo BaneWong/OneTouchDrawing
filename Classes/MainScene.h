@@ -11,7 +11,7 @@ public:
 	CREATE_FUNC(MainScene);
 
 	void startCallback(CCObject* pSender);
-	char* FontToUTF8(const char* font);
+	//char* FontToUTF8(const char* font);
 	
 };
 #endif MAINSCENE_H_
