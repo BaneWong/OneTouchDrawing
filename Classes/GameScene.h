@@ -45,6 +45,8 @@ public:
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
+	
+	int m_nLevelID;// stores the level ID choosed by the player
 
 private:
 	HXmlParse* parseXml; // xml解析类
@@ -67,6 +69,7 @@ private:
 	LineDraw* drawLine; // 玩家路径
 	LinePath* path;// 初识路径
 	GraphHandle *handle;//初始化处理路径保存的类
+	
 
 };
 

@@ -165,8 +165,11 @@ void SelectLevel::touchEventAction(LsTouch* touch, int type){
         // 收到 type 为 1 表示触发关卡选择
 //        CCString* str = CCString::createWithFormat("您选择的关卡为 %d .", touch->getEventId() + 1);
 //        CCMessageBox("关卡", str->getCString());
+		// pass the touch level number to GameScene		
 		CCScene* newScene = CCScene::create();
-		newScene->addChild(GameScene::scene());
+		GameScene* game_scene = GameScene::create();
+		game_scene->m_nLevelID = touch->getEventId();
+		newScene->addChild(game_scene);
 		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
     }
 }

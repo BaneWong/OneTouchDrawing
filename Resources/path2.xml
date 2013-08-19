@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Path>
+	<cnt>4</cnt>
+	<dot0>
+		<posX>61</posX>
+		<posY>91</posY>
+		<connect>
+			<lineTo>1,3</lineTo>
+		</connect>
+	</dot0>	
+	<dot1>
+		<posX>62</posX>
+		<posY>602</posY>
+		<connect>
+			<lineTo>0,2</lineTo>
+		</connect>
+	</dot1>	
+	<dot2>
+		<posX>604</posX>
+		<posY>904</posY>
+		<connect>
+			<lineTo>1,3</lineTo>
+		</connect>
+	</dot2>	
+	<dot3>
+		<posX>603</posX>
+		<posY>83</posY>
+		<connect>
+			<lineTo>0,2</lineTo>
+		</connect>
+	</dot3>	
+</Path>

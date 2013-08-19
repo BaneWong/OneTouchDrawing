@@ -2,7 +2,6 @@
 
 #include "GameScene.h"
 
-
 using namespace cocos2d;
 
 CCScene* GameScene::scene()
@@ -55,7 +54,11 @@ void GameScene::createOriginalPath()
 	this->addChild(pLabel,1);
 
 	// 解析配置文件 初始化关卡
-	parseXml=HXmlParse::parserWithFile("path1.xml");//xml文件
+	
+	std::ostringstream oss;
+	oss << m_nLevelID;
+	string parase_file = "path" + oss.str() + ".xml";
+	parseXml = HXmlParse::parserWithFile(parase_file.c_str());//xml文件
 
 
 	pointCnt = parseXml->arrayPoint.size();

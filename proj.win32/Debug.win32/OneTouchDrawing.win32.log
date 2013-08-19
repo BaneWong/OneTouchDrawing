@@ -1,10 +1,11 @@
-﻿生成启动时间为 2013-8-19 15:50:15。
+﻿生成启动时间为 2013-8-19 16:52:59。
      1>项目“F:\cocos2d-xProjects\OneTouchDrawing\proj.win32\OneTouchDrawing.win32.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         正在创建“Debug.win32\OneTouchDrawing.win32.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+         正在对“Debug.win32\OneTouchDrawing.win32.unsuccessfulbuild”执行 Touch 任务。
        ClCompile:
-         E:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\kazmath\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32\OGLES" /I"F:\cocos2d-2.1rc0-x-2.1.3\CocosDenshion\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\extensions" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt main.cpp
-         main.cpp
+         E:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\kazmath\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32\OGLES" /I"F:\cocos2d-2.1rc0-x-2.1.3\CocosDenshion\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\extensions" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\GameScene.cpp
+         GameScene.cpp
+     1>f:\cocos2d-xprojects\onetouchdrawing\classes\gamescene.cpp(179): warning C4018: “<”: 有符号/无符号不匹配
        ResourceCompile:
          所有输出均为最新。
        ManifestResourceCompile:
@@ -35,4 +36,4 @@
 
 生成成功。
 
-已用时间 00:00:02.65
+已用时间 00:00:10

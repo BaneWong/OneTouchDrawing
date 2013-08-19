@@ -43,6 +43,7 @@ private:
     int m_nCurPage;
     int m_nPageCount;
     CC_SYNTHESIZE_RETAIN(CCScrollView*, m_pScrollView, ScrollView);
+	CC_SYNTHESIZE(int, m_nLevelNumber, LevelNumber);
 };
 
 
