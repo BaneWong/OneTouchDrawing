@@ -27,8 +27,9 @@ bool SelectLevel::init(){
 	CCScrollView* scroll_view = CCScrollView::create(CCSizeMake(640, 1136));
 	//CCScrollView* scroll_view = CCScrollView::create(this->getContentSize());
 	scroll_view->setContainer(getContainLayer());
-	this->setTouchEnabled(false);
+	scroll_view->setTouchEnabled(false);
 	this->addChild(scroll_view);
+	this->setTouchEnabled(true);
 
 	return true;
 }
