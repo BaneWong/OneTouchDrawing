@@ -51,7 +51,7 @@ private:
 	vector<CCPoint> arrayPointDraw; // 要绘制的point集合
 	int pointCnt; // point数量
 
-	vector<vector<int>> arrayConnectTo;// xml中每个点要连接的点的集合
+	vector<vector<int> > arrayConnectTo;// xml中每个点要连接的点的集合
 	vector<CCPoint> arrayPointBegin;// 用来保存用户画过的起点
 	vector<CCPoint> arrayPointEnd;// 用来保存用户画过的终点
 

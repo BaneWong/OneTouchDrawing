@@ -17,7 +17,7 @@ public:
 
 	CC_SYNTHESIZE(vector<CCPoint>,arrayDraw,ArrayDraw);
 	CC_SYNTHESIZE(int, ptCnt, PtCnt);
-	CC_SYNTHESIZE(vector<vector<int>>, arrayConnect, ArrayConnect);
+	CC_SYNTHESIZE(vector<vector<int> >, arrayConnect, ArrayConnect);
 
 	bool containsPoint(int, int);
 
