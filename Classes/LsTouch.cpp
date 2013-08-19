@@ -21,7 +21,7 @@ bool LsTouch::init() {
 	return true;
 }
 
-void LsTouch::setDisplay(CCMenu* dis) {
+void LsTouch::setDisplay(CCSprite* dis) {
 	// 设置之前先清除，没有也无所谓
 	removeChildByTag(TAG_DISPLAY, true);
 	addChild(dis, 0, TAG_DISPLAY);

@@ -25,7 +25,7 @@ public:
 	virtual bool init()	;
 
 	// 设置显示项
-	void setDisplay(CCMenu* dis);
+	void setDisplay(CCSprite* dis);
     CCSprite* getDisplay();
 
 	void setEventId(int eventId);

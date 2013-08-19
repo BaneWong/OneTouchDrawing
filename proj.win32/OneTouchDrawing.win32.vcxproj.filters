@@ -64,6 +64,9 @@
     <ClInclude Include="..\Classes\SelectLevel.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\LsTouch.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -91,6 +94,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SelectLevel.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LsTouch.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

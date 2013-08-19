@@ -39,21 +39,13 @@ bool SelectLevel::init(){
 
 	// add scrollview
 	CCScrollView* scroll_view = CCScrollView::create(CCSizeMake(640, 1136));
-<<<<<<< HEAD
 	//CCScrollView* scroll_view = CCScrollView::create(this->getContentSize());
 	scroll_view->setContainer(getContainLayer());
-	scroll_view->setTouchEnabled(false);
-	this->addChild(scroll_view);
-	this->setTouchEnabled(true);
-=======
-    scroll_view->setContainer(getContainLayer());
-    scroll_view->setTouchEnabled(false);
-    
-    setScrollView(scroll_view);
-	this->addChild(scroll_view);
-    
+	scroll_view->setTouchEnabled(false);    
+//    setScrollView(scroll_view);
+
+	this->addChild(scroll_view);    
     this->setTouchEnabled(true);
->>>>>>> origin/master
 
 	return true;
 }
@@ -97,18 +89,16 @@ CCLayer* SelectLevel::getContainLayer(){
 }
 
 CCNode* SelectLevel::createSpriteByLevel(int level){
-	//CCSprite* sprite = CCSprite::create("level-iphone5.jpg");
+	CCSprite* sprite = CCSprite::create("level-iphone5.jpg");
     
-    CCMenuItemImage* pMenuItemImage = CCMenuItemImage::create("level-iphone5.jpg",
-                                                              "level-iphone5.jpg",
-                                                              this,
-                                                              menu_selector(SelectLevel::startGameCallback));
-    CCMenu* pImageMenu = CCMenu::create(pMenuItemImage);
-//    pImageMenu->setPosition(ccp(window_size.width/2, window_size.height - 150));
-//    this->addChild(pImageMenu);
+//     CCMenuItemImage* pMenuItemImage = CCMenuItemImage::create("level-iphone5.jpg",
+//                                                               "level-iphone5.jpg",
+//                                                               this,
+//                                                               menu_selector(SelectLevel::startGameCallback));
+//     CCMenu* pImageMenu = CCMenu::create(pMenuItemImage);
     
 	LsTouch* ls_touch = LsTouch::create();
-	ls_touch->setDisplay(pImageMenu);
+	ls_touch->setDisplay(sprite);
 	this->addLsTouch(ls_touch, level);
 	return ls_touch;
 

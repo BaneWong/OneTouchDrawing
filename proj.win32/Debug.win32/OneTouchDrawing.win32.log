@@ -1,12 +1,13 @@
-﻿生成启动时间为 2013-8-15 10:25:32。
+﻿生成启动时间为 2013-8-19 15:05:54。
      1>项目“F:\cocos2d-xProjects\OneTouchDrawing\proj.win32\OneTouchDrawing.win32.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug.win32\OneTouchDrawing.win32.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         E:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\kazmath\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32\OGLES" /I"F:\cocos2d-2.1rc0-x-2.1.3\CocosDenshion\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\extensions" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\MainScene.cpp ..\Classes\SelectLevel.cpp
+         E:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I..\Classes /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\kazmath\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32" /I"F:\cocos2d-2.1rc0-x-2.1.3\cocos2dx\platform\third_party\win32\OGLES" /I"F:\cocos2d-2.1rc0-x-2.1.3\CocosDenshion\include" /I"F:\cocos2d-2.1rc0-x-2.1.3\extensions" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc100.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\SelectLevel.cpp
          SelectLevel.cpp
-         MainScene.cpp
-         正在生成代码...
+     1>f:\cocos2d-xprojects\onetouchdrawing\classes\selectlevel.cpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>f:\cocos2d-xprojects\onetouchdrawing\classes\lstouch.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>f:\cocos2d-xprojects\onetouchdrawing\classes\lstouch.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
        ResourceCompile:
          所有输出均为最新。
        ManifestResourceCompile:
@@ -20,6 +21,7 @@
          Debug.win32\HXmlParse.obj
          Debug.win32\LineDraw.obj
          Debug.win32\LinePath.obj
+         Debug.win32\LsTouch.obj
          Debug.win32\MainScene.obj
          Debug.win32\SelectLevel.obj
          Debug.win32\main.obj
@@ -36,4 +38,4 @@
 
 生成成功。
 
-已用时间 00:00:11.50
+已用时间 00:00:03.89
