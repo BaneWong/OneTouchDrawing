@@ -2,29 +2,29 @@
 <Path>
 	<cnt>4</cnt>
 	<dot0>
-		<posX>21</posX>
-		<posY>31</posY>
+		<posX>61</posX>
+		<posY>91</posY>
 		<connect>
 			<lineTo>2,3</lineTo>
 		</connect>
 	</dot0>	
 	<dot1>
-		<posX>32</posX>
-		<posY>202</posY>
+		<posX>62</posX>
+		<posY>602</posY>
 		<connect>
 			<lineTo>3</lineTo>
 		</connect>
 	</dot1>	
 	<dot2>
-		<posX>204</posX>
-		<posY>304</posY>
+		<posX>604</posX>
+		<posY>904</posY>
 		<connect>
 			<lineTo>0,3</lineTo>
 		</connect>
 	</dot2>	
 	<dot3>
-		<posX>303</posX>
-		<posY>43</posY>
+		<posX>603</posX>
+		<posY>83</posY>
 		<connect>
 			<lineTo>0,1,2</lineTo>
 		</connect>

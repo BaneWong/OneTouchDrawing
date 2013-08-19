@@ -38,13 +38,13 @@ bool SelectLevel::init(){
 	this->addChild(background);
 
 	// add scrollview
-	CCScrollView* scroll_view = CCScrollView::create(CCSizeMake(640, 1136));
+	m_pScrollView = CCScrollView::create(CCSizeMake(640, 1136));
 	//CCScrollView* scroll_view = CCScrollView::create(this->getContentSize());
-	scroll_view->setContainer(getContainLayer());
-	scroll_view->setTouchEnabled(false);    
-//    setScrollView(scroll_view);
+	m_pScrollView->setContainer(getContainLayer());
+	m_pScrollView->setTouchEnabled(false);
+    setScrollView(m_pScrollView);
 
-	this->addChild(scroll_view);    
+	this->addChild(m_pScrollView);
     this->setTouchEnabled(true);
 
 	return true;
@@ -165,6 +165,9 @@ void SelectLevel::touchEventAction(LsTouch* touch, int type){
         // 收到 type 为 1 表示触发关卡选择
 //        CCString* str = CCString::createWithFormat("您选择的关卡为 %d .", touch->getEventId() + 1);
 //        CCMessageBox("关卡", str->getCString());
+		CCScene* newScene = CCScene::create();
+		newScene->addChild(GameScene::scene());
+		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
     }
 }
 

@@ -49,7 +49,7 @@ void GameScene::menuCloseCallback(CCObject* pSender)
 void GameScene::createOriginalPath()
 {
 
-	CCLabelTTF *pLabel=CCLabelTTF::create("xml 文件中读取的数据如下：", "Arial", 28);
+	CCLabelTTF *pLabel=CCLabelTTF::create("xml read data：", "Arial", 28);
 	CCSize size=CCDirector::sharedDirector()->getWinSize();
 	pLabel->setPosition(ccp(size.width/2,size.height-20));
 	this->addChild(pLabel,1);
