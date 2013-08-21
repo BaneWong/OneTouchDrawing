@@ -1,6 +1,19 @@
-// TODO:判断重复的线 不要画
+/* 
+	TODO: judge the repeated lines,discard them(finished)
+	TODO: add restart and back button
+		  begin: 2013-8-21 10:58
 
+	TODO: 2013-8-21 10:59 add the judgement of win or lose current level
+		  begin: 2013-8-21 10:59
+
+	TODO: translate all the comment to english
+		  begin: 2013-8-21 10:59
+
+	TODO: add the save module,to save the player pass how many levels
+		  begin: 2013-8-21 11:17
+*/
 #include "GameScene.h"
+#include "SelectLevel.h"
 
 using namespace cocos2d;
 
@@ -24,6 +37,7 @@ bool GameScene::init(int levelID)
 
 	m_nLevelID = levelID;
 
+	createRestartAndBackMenu();
 	createOriginalPath();
 	this->setTouchEnabled(true);
 	this->scheduleUpdate();
@@ -40,10 +54,18 @@ void GameScene::update(float dt)
 //  	}
 }
 
-void GameScene::menuCloseCallback(CCObject* pSender)
-{
-	// "close" menu item clicked
-	CCDirector::sharedDirector()->end();
+void GameScene::restartCallback(CCObject* pSender){
+	CCScene* scene = CCScene::create();
+	SelectLevel* layer = SelectLevel::create();
+	scene->addChild(layer);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionFadeDown::create(0.4f, scene));
+}
+
+void GameScene::createRestartAndBackMenu(){
+	CCMenuItem* item2 = CCMenuItemImage::create("back-iphone5.png", "back-iphone5.png", this, menu_selector(GameScene::restartCallback) );
+	CCMenu* resartMenu = CCMenu::create(item2, NULL);
+	resartMenu->setPosition(ccp(50, 1000));
+	this->addChild(resartMenu);
 }
 
 void GameScene::createOriginalPath()
@@ -53,8 +75,7 @@ void GameScene::createOriginalPath()
 	pLabel->setPosition(ccp(size.width/2,size.height-20));
 	this->addChild(pLabel,1);
 
-	// 解析配置文件 初始化关卡
-	
+	// 解析配置文件 初始化关卡	
 	// convert int to string
 	std::ostringstream oss;
 	oss << m_nLevelID;

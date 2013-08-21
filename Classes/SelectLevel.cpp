@@ -192,10 +192,3 @@ void SelectLevel::adjustScrollView(float offset){
     
     CCLog("current page index: %d", m_nCurPage);
 }
-/*
-  void SelectLevel::startGameCallback(CCObject* pSender){
- 	CCScene* newScene = CCScene::create();
- 	newScene->addChild(GameScene::scene());
-	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
-}
-*/
