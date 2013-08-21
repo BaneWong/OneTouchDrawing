@@ -164,12 +164,11 @@ void SelectLevel::touchEventAction(LsTouch* touch, int type){
     }
     if (type == 2 && touch){
         // 收到 type 为 1 表示触发关卡选择
-//        CCString* str = CCString::createWithFormat("您选择的关卡为 %d .", touch->getEventId() + 1);
-//        CCMessageBox("关卡", str->getCString());
 		// pass the touch level number to GameScene		
 		CCScene* newScene = CCScene::create();
-		GameScene* game_scene = GameScene::create();
-		game_scene->m_nLevelID = touch->getEventId();
+		int levelID = touch->getEventId() + 1;
+		GameScene* game_scene = GameScene::create(levelID);
+		// set the ID to be retrieved by the instance of GameScene
 		newScene->addChild(game_scene);
 		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
     }
@@ -193,9 +192,10 @@ void SelectLevel::adjustScrollView(float offset){
     
     CCLog("current page index: %d", m_nCurPage);
 }
-
-void SelectLevel::startGameCallback(CCObject* pSender){
-	CCScene* newScene = CCScene::create();
-	newScene->addChild(GameScene::scene());
+/*
+  void SelectLevel::startGameCallback(CCObject* pSender){
+ 	CCScene* newScene = CCScene::create();
+ 	newScene->addChild(GameScene::scene());
 	CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
 }
+*/

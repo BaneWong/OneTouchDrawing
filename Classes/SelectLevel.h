@@ -31,7 +31,7 @@ public:
     CCLayer* getContainLayer();
     CCNode* createSpriteByLevel(int level);
     void adjustScrollView(float offset);
-    void startGameCallback(CCObject* pSender);
+    //void startGameCallback(CCObject* pSender);
 
 private:
 	CCSize window_size; 

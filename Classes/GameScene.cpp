@@ -4,24 +4,25 @@
 
 using namespace cocos2d;
 
-CCScene* GameScene::scene()
-{
-	CCScene* scene = CCScene::create();
-
-	GameScene* layer = GameScene::create();
-
-	scene->addChild(layer);
-
-	return scene;
+GameScene* GameScene::create(int levelID){
+	GameScene* scene = new GameScene();
+	if(scene && scene->init(levelID)){
+		scene->autorelease();
+		return scene;
+	}
+	CC_SAFE_RELEASE(scene);
+	return NULL;
 }
 
 // on "init" you need to initialize your instance
-bool GameScene::init()
+bool GameScene::init(int levelID)
 {
 	beginIndex = -1;
 	oldBeginIndex = -1;
 	isInCircle = false;
 	isStart = false;
+
+	m_nLevelID = levelID;
 
 	createOriginalPath();
 	this->setTouchEnabled(true);
@@ -47,7 +48,6 @@ void GameScene::menuCloseCallback(CCObject* pSender)
 
 void GameScene::createOriginalPath()
 {
-
 	CCLabelTTF *pLabel=CCLabelTTF::create("xml read data：", "Arial", 28);
 	CCSize size=CCDirector::sharedDirector()->getWinSize();
 	pLabel->setPosition(ccp(size.width/2,size.height-20));
@@ -55,11 +55,11 @@ void GameScene::createOriginalPath()
 
 	// 解析配置文件 初始化关卡
 	
+	// convert int to string
 	std::ostringstream oss;
 	oss << m_nLevelID;
-	string parase_file = "path" + oss.str() + ".xml";
+	string parase_file = "path" + oss.str() + ".xml";	
 	parseXml = HXmlParse::parserWithFile(parase_file.c_str());//xml文件
-
 
 	pointCnt = parseXml->arrayPoint.size();
 	for (int i = 0; i < pointCnt; i++)

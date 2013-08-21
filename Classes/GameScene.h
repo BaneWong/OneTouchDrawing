@@ -21,20 +21,16 @@ class GameScene : public CCLayer
 {
 public:
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-	virtual bool init();
+	virtual bool init(int levelID);
 
-	// there's no 'id' in cpp, so we recommand to return the exactly class pointer
-	static CCScene* scene();
+	// need to pass the levelID
+	static GameScene* create(int levelID);
 
-	// a selector callback
+	// TODO:change to the return callback
 	void menuCloseCallback(CCObject* pSender);
 
-	// implement the "static node()" method manually
-	CREATE_FUNC(GameScene);
-
-	// 初始path
+	// init the original path
 	void createOriginalPath();
-
 
 	void update(float dt);
 
@@ -45,8 +41,6 @@ public:
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
-	
-	int m_nLevelID;// stores the level ID choosed by the player
 
 private:
 	HXmlParse* parseXml; // xml解析类
@@ -70,6 +64,7 @@ private:
 	LinePath* path;// 初识路径
 	GraphHandle *handle;//初始化处理路径保存的类
 	
+	int m_nLevelID;// stores the level ID choosed by the player
 
 };
 
