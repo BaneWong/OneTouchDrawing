@@ -28,7 +28,7 @@ public:
 
 	// TODO:change to the return callback
 	void menuCloseCallback(CCObject* pSender);
-	void restartCallback(CCObject* pSender);
+	void returnCallback(CCObject* pSender);
 
 	// init the original path
 	void createOriginalPath();
@@ -38,6 +38,7 @@ public:
 	bool containsInTouch(CCPoint);
 	bool isDrawed(int start, int end);
 	bool isOriginalPath(int start, int end);
+	bool isFinishPath();
 
 	void createRestartAndBackMenu();
 

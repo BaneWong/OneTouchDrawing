@@ -3,7 +3,7 @@
 	<cnt>4</cnt>
 	<dot0>
 		<posX>61</posX>
-		<posY>91</posY>
+		<posY>1000</posY>
 		<connect>
 			<lineTo>2,3</lineTo>
 		</connect>
@@ -24,7 +24,7 @@
 	</dot2>	
 	<dot3>
 		<posX>603</posX>
-		<posY>83</posY>
+		<posY>1000</posY>
 		<connect>
 			<lineTo>0,1,2</lineTo>
 		</connect>

@@ -54,7 +54,7 @@ void GameScene::update(float dt)
 //  	}
 }
 
-void GameScene::restartCallback(CCObject* pSender){
+void GameScene::returnCallback(CCObject* pSender){
 	CCScene* scene = CCScene::create();
 	SelectLevel* layer = SelectLevel::create();
 	scene->addChild(layer);
@@ -62,24 +62,20 @@ void GameScene::restartCallback(CCObject* pSender){
 }
 
 void GameScene::createRestartAndBackMenu(){
-	CCMenuItem* item2 = CCMenuItemImage::create("back-iphone5.png", "back-iphone5.png", this, menu_selector(GameScene::restartCallback) );
+	CCMenuItem* item2 = CCMenuItemImage::create("back-iphone5.png", "back-iphone5.png", this, menu_selector(GameScene::returnCallback) );
 	CCMenu* resartMenu = CCMenu::create(item2, NULL);
 	resartMenu->setPosition(ccp(50, 1000));
 	this->addChild(resartMenu);
 }
 
 void GameScene::createOriginalPath()
-{
-	CCLabelTTF *pLabel=CCLabelTTF::create("xml read data：", "Arial", 28);
+{	
 	CCSize size=CCDirector::sharedDirector()->getWinSize();
-	pLabel->setPosition(ccp(size.width/2,size.height-20));
-	this->addChild(pLabel,1);
-
 	// 解析配置文件 初始化关卡	
 	// convert int to string
 	std::ostringstream oss;
 	oss << m_nLevelID;
-	string parase_file = "path" + oss.str() + ".xml";	
+	string parase_file = "path" + oss.str() + ".xml";
 	parseXml = HXmlParse::parserWithFile(parase_file.c_str());//xml文件
 
 	pointCnt = parseXml->arrayPoint.size();
@@ -192,6 +188,10 @@ void GameScene::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
 {
 	CCTouch* touch = (CCTouch*) pTouches->anyObject();
 	location3 = touch->getLocation();
+	if(isFinishPath())	
+		CCMessageBox("win", "result");
+	else
+		CCMessageBox("lose", "result");
 }
 // 判断点击的点是否在范围内
 bool GameScene::containsInTouch(CCPoint touchPoint)
@@ -247,4 +247,21 @@ bool GameScene::isOriginalPath(int start, int end)
 	// 如果不在正确路径上，则将终点指回起点
 	beginIndex = oldBeginIndex;
 	return false;
+}
+
+// judge the player finish the game or not
+bool GameScene::isFinishPath()
+{
+	for(int i = 0; i < 4; i++)
+	{
+		EdgeNode* find = handle->agl.adList[i].firstAdNode;
+		while (find != NULL)
+		{
+			if (find->IsDrawed == false)
+				return false;
+			else
+				find = find->next;
+		}
+	}
+	return true;
 }
