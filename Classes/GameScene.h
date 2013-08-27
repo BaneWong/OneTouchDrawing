@@ -20,6 +20,8 @@ USING_NS_CC;
 class GameScene : public CCLayer
 {
 public:
+
+	~GameScene();
 	// Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
 	virtual bool init(int levelID);
 
@@ -29,6 +31,7 @@ public:
 	// TODO:change to the return callback
 	void menuCloseCallback(CCObject* pSender);
 	void returnCallback(CCObject* pSender);
+	void restartCallback(CCObject* pSender);
 
 	// init the original path
 	void createOriginalPath();

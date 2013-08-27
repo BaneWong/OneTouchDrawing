@@ -19,11 +19,12 @@ class HXmlParse :public CCObject, public CCSAXDelegator
 
 public:
 	HXmlParse();
+
 	static HXmlParse * parserWithFile(const char *tmxFile);
 	bool initHXmlParse(const char* xmlName);
 	string root_name;
 	bool isJumpHeadData;
-	~HXmlParse();
+	
 	vector< string> allData;//用于记录所有数据
 	vector<float> arrayPosX;
 	vector<float> arrayPosY;

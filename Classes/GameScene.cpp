@@ -2,9 +2,11 @@
 	TODO: judge the repeated lines,discard them(finished)
 	TODO: add restart and back button
 		  begin: 2013-8-21 10:58
+		    end: 2013-8-27 10:04
 
 	TODO: 2013-8-21 10:59 add the judgement of win or lose current level
 		  begin: 2013-8-21 10:59
+		    end: 2013-8-27 10:04
 
 	TODO: translate all the comment to english
 		  begin: 2013-8-21 10:59
@@ -16,6 +18,12 @@
 #include "SelectLevel.h"
 
 using namespace cocos2d;
+
+GameScene::~GameScene(){
+	parseXml->release();
+	if(isInCircle)
+		drawLine->release();
+}
 
 GameScene* GameScene::create(int levelID){
 	GameScene* scene = new GameScene();
@@ -54,6 +62,11 @@ void GameScene::update(float dt)
 //  	}
 }
 
+void GameScene::restartCallback(CCObject* pSender){
+	drawLine->release();
+}
+
+
 void GameScene::returnCallback(CCObject* pSender){
 	CCScene* scene = CCScene::create();
 	SelectLevel* layer = SelectLevel::create();
@@ -64,7 +77,7 @@ void GameScene::returnCallback(CCObject* pSender){
 void GameScene::createRestartAndBackMenu(){
 	CCMenuItem* item2 = CCMenuItemImage::create("back-iphone5.png", "back-iphone5.png", this, menu_selector(GameScene::returnCallback) );
 	CCMenu* resartMenu = CCMenu::create(item2, NULL);
-	resartMenu->setPosition(ccp(50, 1000));
+	resartMenu->setPosition(ccp(50, 1100));
 	this->addChild(resartMenu);
 }
 
@@ -77,6 +90,8 @@ void GameScene::createOriginalPath()
 	oss << m_nLevelID;
 	string parase_file = "path" + oss.str() + ".xml";
 	parseXml = HXmlParse::parserWithFile(parase_file.c_str());//xml文件
+	// need to use in below functions
+	parseXml->retain();
 
 	pointCnt = parseXml->arrayPoint.size();
 	for (int i = 0; i < pointCnt; i++)
@@ -85,7 +100,7 @@ void GameScene::createOriginalPath()
 	// 将配置中的每个点连接的点集合提取出来
 	arrayConnectTo = parseXml->arrayConnect;
 
-	//
+	
 	path = LinePath::create();
 	path->setArrayDraw(arrayPointDraw);
 	path->setPtCnt(pointCnt);
@@ -109,6 +124,7 @@ void GameScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 			{
 				isStart = true;
 				drawLine = LineDraw::create();
+				drawLine->retain();
 				drawLine->setGraphHandle(handle);
 				drawLine->setArrayPoint(arrayPointDraw);
 				this->addChild(drawLine, 1);
@@ -155,7 +171,7 @@ void GameScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 void GameScene::ccTouchesMoved(CCSet *pTouches, CCEvent *pEvent)
 {
 	CCTouch* touch = (CCTouch*) pTouches->anyObject();
-	if(touch)
+	if(touch && isInCircle)
 	{
 		location2 = touch->getLocation();
 		drawLine->setMovedPoint(location2);
@@ -189,15 +205,13 @@ void GameScene::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
 	CCTouch* touch = (CCTouch*) pTouches->anyObject();
 	location3 = touch->getLocation();
 	if(isFinishPath())	
-		CCMessageBox("win", "result");
-	else
-		CCMessageBox("lose", "result");
+		CCMessageBox("win", (parseXml->dot_name).c_str());
 }
 // 判断点击的点是否在范围内
 bool GameScene::containsInTouch(CCPoint touchPoint)
 {
 	oldBeginIndex = beginIndex;
-	for (int i = 0; i < arrayPointDraw.size(); i++)
+	for (size_t i = 0; i < arrayPointDraw.size(); i++)
 		if((touchPoint.x - arrayPointDraw[i].x)*(touchPoint.x - arrayPointDraw[i].x) + pow(touchPoint.y - arrayPointDraw[i].y, 2) < pow((float)POINT_RADIUS, 2))
 		{
 			beginIndex = i;
@@ -250,9 +264,10 @@ bool GameScene::isOriginalPath(int start, int end)
 }
 
 // judge the player finish the game or not
+// TODO: change the hard code "i<4" , 'i' is the number of this level
 bool GameScene::isFinishPath()
 {
-	for(int i = 0; i < 4; i++)
+	for(int i = 0; i < parseXml->cnt; i++)
 	{
 		EdgeNode* find = handle->agl.adList[i].firstAdNode;
 		while (find != NULL)

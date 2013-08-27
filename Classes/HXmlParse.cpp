@@ -140,12 +140,3 @@ void HXmlParse::textHandler(void *ctx, const char *ch, int len)
 
 
 }
-
-//析构函数释放内存
-HXmlParse::~HXmlParse()
-{
-	for (int i=0; i<allData.size(); i++) {
-		allData[i].clear();
-	}
-	allData.clear();
-}
