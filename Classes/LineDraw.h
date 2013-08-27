@@ -21,6 +21,7 @@ public:
 	CC_SYNTHESIZE(int, oldBeginIndex, OldBeginIndex);
 
 	virtual bool init();
+	//static LineDraw* create();
 	CREATE_FUNC(LineDraw);
 // 	bool isOriginalPath(int, int);
 // 	bool isDrawed(int, int);

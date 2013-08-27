@@ -63,7 +63,10 @@ void GameScene::update(float dt)
 }
 
 void GameScene::restartCallback(CCObject* pSender){
-	drawLine->release();
+	CCScene* scene = CCScene::create();
+	GameScene* layer = GameScene::create(m_nLevelID);
+	scene->addChild(layer);
+	CCDirector::sharedDirector()->replaceScene(CCTransitionFadeDown::create(0.4f, scene));
 }
 
 
@@ -75,9 +78,14 @@ void GameScene::returnCallback(CCObject* pSender){
 }
 
 void GameScene::createRestartAndBackMenu(){
-	CCMenuItem* item2 = CCMenuItemImage::create("back-iphone5.png", "back-iphone5.png", this, menu_selector(GameScene::returnCallback) );
-	CCMenu* resartMenu = CCMenu::create(item2, NULL);
-	resartMenu->setPosition(ccp(50, 1100));
+	CCMenuItem* itemBack = CCMenuItemImage::create("back-iphone5.png", "back-iphone5.png", this, menu_selector(GameScene::returnCallback) );
+	CCMenu* backMenu = CCMenu::create(itemBack, NULL);
+	backMenu->setPosition(ccp(50, 1100));
+	this->addChild(backMenu);
+
+	CCMenuItem* itemRestart = CCMenuItemImage::create("restart-iphone5.jpg", "restart-iphone5.jpg", this, menu_selector(GameScene::restartCallback) );
+	CCMenu* resartMenu = CCMenu::create(itemRestart, NULL);
+	resartMenu->setPosition(ccp(100, 1100));
 	this->addChild(resartMenu);
 }
 
@@ -124,7 +132,7 @@ void GameScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 			{
 				isStart = true;
 				drawLine = LineDraw::create();
-				drawLine->retain();
+				//drawLine->retain();
 				drawLine->setGraphHandle(handle);
 				drawLine->setArrayPoint(arrayPointDraw);
 				this->addChild(drawLine, 1);
@@ -143,11 +151,6 @@ void GameScene::ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent)
 				// 如果已经开始了，则保存新的一条线
 				if(oldBeginIndex != beginIndex)
 				{
-					// 设置新的起点
-// 					drawLine->setFixPoint(arrayPointDraw[beginIndex]);
-// 					drawLine->setMovedPoint(arrayPointDraw[beginIndex]);
-// 					
-// 					handle->saveDrawedLine(parseXml, oldBeginIndex, beginIndex);
 					if(isOriginalPath(oldBeginIndex, beginIndex) && !isDrawed(oldBeginIndex, beginIndex))
 					{
 						drawLine->setFixPoint(arrayPointDraw[beginIndex]);

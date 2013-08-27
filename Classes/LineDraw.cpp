@@ -20,7 +20,7 @@ void LineDraw::draw()
 
 	
 	// 绘制已经保存的线
-	for(int i = 0;i < arrayPoint.size();i++)
+	for(size_t i = 0;i < arrayPoint.size();i++)
 	{
 		EdgeNode* find = _graphHandle->agl.adList[i].firstAdNode;
 		while(find != NULL)
