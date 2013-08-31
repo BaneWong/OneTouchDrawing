@@ -15,12 +15,12 @@ static int TAG_DISPLAY = 1000;
 
 SelectLevel::SelectLevel():m_nCurPage(0),m_nPageCount(0)
 {
-    
+
 }
 
 SelectLevel::~SelectLevel()
 {
-    
+
 }
 
 CCScene* SelectLevel::scene(){
@@ -45,10 +45,11 @@ bool SelectLevel::init(){
 	m_pScrollView->setTouchEnabled(false);
     setScrollView(m_pScrollView);
 
-	this->addChild(m_pScrollView);
+    this->addChild(m_pScrollView);
     this->setTouchEnabled(true);
 
-	return true;
+
+    return true;
 }
 
 CCLayer* SelectLevel::getContainLayer(){
@@ -59,29 +60,29 @@ CCLayer* SelectLevel::getContainLayer(){
 
     m_nPageCount = (level_cnt - 1) / (width_cnt * height_cnt) + 1;
     
-	for(int i = 0; i < m_nPageCount; i++){
-		CCSprite* world = CCSprite::create("world-iphone5.jpg");
-		world->setPosition(ccpAdd(point_center,ccp(window_size.width * (i % world_cnt), 0)));
-		layer->addChild(world, 0);
-	}
+    for(int i = 0; i < m_nPageCount; i++){
+      CCSprite* world = CCSprite::create("world-iphone5.jpg");
+      world->setPosition(ccpAdd(point_center,ccp(window_size.width * (i % world_cnt), 0)));
+      layer->addChild(world, 0);
+  }
 	// set the distance 50;the picture is 100x100
     // TODO: change the hard code:100
-	float x_level_offset = (window_size.width - width_cnt * 100 - (width_cnt - 1) * 50) / 2;
-	float y_level_offset = window_size.height * 4/5;
-		
-    CCSprite* sprite = CCSprite::create("level-iphone5.jpg");
-    sprite->setAnchorPoint(CCPointZero);
-    sprite->setPosition(ccp(45, 0));
-    layer->addChild(sprite);
-    
-	for(int i = 0; i < level_cnt; i++){
-		int current_page_index = i / (width_cnt * height_cnt);
+  float x_level_offset = (window_size.width - width_cnt * 100 - (width_cnt - 1) * 50) / 2;
+  float y_level_offset = window_size.height * 4/5;
+
+  CCSprite* sprite = CCSprite::create("level-iphone5.jpg");
+  sprite->setAnchorPoint(CCPointZero);
+  sprite->setPosition(ccp(45, 0));
+  layer->addChild(sprite);
+
+  for(int i = 0; i < level_cnt; i++){
+      int current_page_index = i / (width_cnt * height_cnt);
 		CCNode* level = createSpriteByLevel(i); // why wrong start x positioin
         //CCNode* level = CCSprite::create("level-iphone5.jpg"); // correct start x positioin
 		level->setAnchorPoint(CCPointZero);
         // TODO: change the hard code
 		level->setPosition(ccp((x_level_offset + (i % width_cnt) * (100 + 50) + current_page_index * window_size.width),
-							   (y_level_offset - (i % (width_cnt * height_cnt) / height_cnt) * (100 + 50))));
+          (y_level_offset - (i % (width_cnt * height_cnt) / height_cnt) * (100 + 50))));
         // add tag for display
 		layer->addChild(level, 2, i);
 	}
@@ -91,13 +92,13 @@ CCLayer* SelectLevel::getContainLayer(){
 
 CCNode* SelectLevel::createSpriteByLevel(int level){
 	CCSprite* sprite = CCSprite::create("level-iphone5.jpg");
-    
+
 //     CCMenuItemImage* pMenuItemImage = CCMenuItemImage::create("level-iphone5.jpg",
 //                                                               "level-iphone5.jpg",
 //                                                               this,
 //                                                               menu_selector(SelectLevel::startGameCallback));
 //     CCMenu* pImageMenu = CCMenu::create(pMenuItemImage);
-    
+
 	LsTouch* ls_touch = LsTouch::create();
 	ls_touch->setDisplay(sprite);
 	this->addLsTouch(ls_touch, level);
@@ -143,6 +144,8 @@ void SelectLevel::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent){
     }
     
     sendTouchMessage(pTouch, 2);
+    // just for try,need to find another place to place this function
+    loadUserData();
 }
 
 void SelectLevel::touchEventAction(LsTouch* touch, int type){
@@ -165,13 +168,14 @@ void SelectLevel::touchEventAction(LsTouch* touch, int type){
     if (type == 2 && touch){
         // 收到 type 为 1 表示触发关卡选择
 		// pass the touch level number to GameScene		
-		CCScene* newScene = CCScene::create();
-		int levelID = touch->getEventId() + 1;
-		GameScene* game_scene = GameScene::create(levelID);
+      CCScene* newScene = CCScene::create();
+        // eventId begin from 0,but the xml file begin from "path1.xml",so plus one
+      int levelID = touch->getEventId() + 1;
+      GameScene* game_scene = GameScene::create(levelID);
 		// set the ID to be retrieved by the instance of GameScene
-		newScene->addChild(game_scene);
-		CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
-    }
+      newScene->addChild(game_scene);
+      CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5, newScene));
+  }
 }
 
 void SelectLevel::adjustScrollView(float offset){
@@ -191,4 +195,27 @@ void SelectLevel::adjustScrollView(float offset){
     getScrollView()->setContentOffsetInDuration(adjustPoint, 0.2f);
     
     CCLog("current page index: %d", m_nCurPage);
+}
+// add loadUserData every time replace SelectLevel scene
+void SelectLevel::loadUserData(){
+    float x_level_offset = (window_size.width - width_cnt * 100 - (width_cnt - 1) * 50) / 2;
+    float y_level_offset = window_size.height * 4/5;
+    for(int i = 0; i < 2; i++){
+        int current_page_index = i / (width_cnt * height_cnt);
+
+        std::ostringstream oss;
+        int iPlusOne = i + 1;
+        oss << iPlusOne;
+        string strLevelID = oss.str();
+ 
+        bool isAchieved = CCUserDefault::sharedUserDefault()->getBoolForKey(strLevelID.c_str());
+        if(isAchieved){
+            CCSprite* achieved = CCSprite::create("achieved-iphone5.png");
+            achieved->setPosition(ccp((x_level_offset + (i % width_cnt) * (100 + 50) + current_page_index * window_size.width),
+             (y_level_offset - (i % (width_cnt * height_cnt) / height_cnt) * (100 + 50))));           
+            this->addChild(achieved);
+        }
+
+
+    }
 }

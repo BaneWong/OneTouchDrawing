@@ -43,6 +43,7 @@ bool GameScene::init(int levelID)
 	isInCircle = false;
 	isStart = false;
 
+	// begin from 1
 	m_nLevelID = levelID;
 
 	createRestartAndBackMenu();
@@ -207,8 +208,19 @@ void GameScene::ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent)
 {
 	CCTouch* touch = (CCTouch*) pTouches->anyObject();
 	location3 = touch->getLocation();
-	if(isFinishPath())	
-		CCMessageBox("win", (parseXml->dot_name).c_str());
+	//  
+	std::ostringstream oss;
+	oss << m_nLevelID;
+	string strLevelID = oss.str();
+
+	if(isFinishPath()){
+		// add module that save data
+	    CCUserDefault::sharedUserDefault()->setBoolForKey(strLevelID.c_str(), true);
+		// CCMessageBox("win", (parseXml->dot_name).c_str());
+		// CCMessageBox("win", a.c_str());
+	}
+	else
+		CCUserDefault::sharedUserDefault()->setBoolForKey(strLevelID.c_str(), false);
 }
 // 判断点击的点是否在范围内
 bool GameScene::containsInTouch(CCPoint touchPoint)
