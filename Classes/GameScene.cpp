@@ -21,8 +21,8 @@ using namespace cocos2d;
 
 GameScene::~GameScene(){
 	parseXml->release();
-	if(isInCircle)
-		drawLine->release();
+	// if(isInCircle)
+	// 	drawLine->release();
 }
 
 GameScene* GameScene::create(int levelID){
